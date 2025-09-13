@@ -9,6 +9,18 @@ async function getAllUsers(req, res){
     }
 }
 
+async function createUser(req, res){
+    const {username, email, senha} = req.body;
+    try{
+        const novoUsuario = await userServices.criarUsuario({username, email, senha});
+        res.status(201).json(novoUsuario);
+    } catch (error){
+        console.error(error);
+        res.status(400).json({error: "Erro ao criar usuário"})
+    }
+};
+
 export default {
-    getAllUsers
+    getAllUsers,
+    createUser
 };
