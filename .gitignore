@@ -5,6 +5,5 @@
 /generated/prisma
 .DS_Store
 
-# ignore package json
 package-lock.json
 package.json
