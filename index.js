@@ -1,11 +1,14 @@
 import express from 'express';
 import pool from './db.js';
+import userRoutes from './routes/userRoutes.js';
 
 const app = express();
 const PORT = 3000;
 
 // express.json()
 app.use(express.json());
+
+app.use('/users', userRoutes);
 
 // database connection test
 pool.connect()
