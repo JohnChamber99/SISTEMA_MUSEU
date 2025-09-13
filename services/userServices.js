@@ -21,8 +21,23 @@ async function deletarUsuarioPorId(id){
     });
 }
 
+async function updateUserById(id, dados){
+    return await prisma.usuario.update({
+        where:{id},
+        data: dados
+    });
+}
+
+async function getUserById(id){
+    return await prisma.usuario.findUnique({
+        where: {id: id}
+    }); 
+}
+
 export default {
     listarUsuarios,
     criarUsuario,
-    deletarUsuarioPorId
+    deletarUsuarioPorId,
+    updateUserById,
+    getUserById
 };
