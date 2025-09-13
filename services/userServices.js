@@ -15,7 +15,14 @@ async function criarUsuario(dados) {
     return prisma.usuario.create({data: dados});
 }
 
+async function deletarUsuarioPorId(id){
+    return await prisma.usuario.delete({
+        where: {id: id}
+    });
+}
+
 export default {
     listarUsuarios,
-    criarUsuario
+    criarUsuario,
+    deletarUsuarioPorId
 };

@@ -20,7 +20,19 @@ async function createUser(req, res){
     }
 };
 
+async function deleteUser(req, res){
+    const {id} = req.body;
+    try{
+        const usuarios = await userServices.deletarUsuarioPorId(id);
+        res.json(usuarios);
+    } catch (error){
+        console.error(error);
+        res.status(400).json({error: "Erro ao deletar usuário"})
+    }
+}
+
 export default {
     getAllUsers,
-    createUser
+    createUser,
+    deleteUser
 };
