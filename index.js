@@ -7,7 +7,7 @@ const PORT = 3000;
 
 // express.json()
 app.use(express.json());
-
+// Chamando a rota Users
 app.use('/users', userRoutes);
 
 // database connection test

@@ -13,10 +13,71 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Usuario {
   id Int @id @default(autoincrement())
   username String
   email String @unique
   senha String
+}
+
+model Autor {
+  id Int @id @default(autoincrement())
+  nome String
+  descricao String?
+  dataNascimento DateTime?
+  dataFaleecimento DateTime?
+  estaVivo Boolean?
+  itemExpositivo ItemExpositivo[]
+}
+
+model Documento {
+  id Int @id @default(autoincrement())
+  documento String
+  itemExpositivo ItemExpositivo[]
+}
+
+model TaxonomiaPai {
+  id Int @id @default(autoincrement())
+  nome String
+  descricao String?
+  taxonomiaFilho TaxonomiaFilho[]
+  itemExpositivo ItemExpositivo[]
+}
+
+model TaxonomiaFilho {
+  id Int @id @default(autoincrement())
+  nome String
+  descricao String?
+  taxonomiaPai TaxonomiaPai @relation(fields: [taxonomiaPaiId], references: [id])
+  taxonomiaPaiId Int
+  itemExpositivo ItemExpositivo[]
+}
+
+model ItemExpositivo {
+  id Int @id @default(autoincrement())
+  tiutuloDaObra String
+  descricao String?
+  autor Autor? @relation(fields: [autorId], references: [id])
+  autorId Int?
+  taxonomiaPai TaxonomiaPai? @relation(fields: [taxonomiaPaiId], references: [id])
+  taxonomiaPaiId Int?
+  taxonomiaFilho TaxonomiaFilho? @relation(fields: [taxonomiaFilhoId], references: [id])
+  taxonomiaFilhoId Int?
+  periodo String?
+  altura Decimal?
+  largura Decimal?
+  comprimento Decimal?
+  imagem_expositiva String?
+  documento Documento? @relation(fields: [documentoId], references: [id])
+  documentoId Int?
+  status Int?
+  estadoConservacao Int?
+  emManutencao Boolean?
+  colecao Colecao[]
+}
+
+model Colecao {
+  id Int @id @default(autoincrement())
+  nome String
+  itemExpositivo ItemExpositivo[]
 }
