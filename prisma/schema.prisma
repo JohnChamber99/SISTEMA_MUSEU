@@ -25,7 +25,7 @@ model Autor {
   nome String
   descricao String?
   dataNascimento DateTime?
-  dataFaleecimento DateTime?
+  dataFalecimento DateTime?
   estaVivo Boolean?
   itemExpositivo ItemExpositivo[]
 }
