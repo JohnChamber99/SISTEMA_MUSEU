@@ -51,12 +51,12 @@ async function getUserById(req, res){
     try{
         const usuario = await userServices.getUserById(parseInt(id));
         if(!usuario){
-            res.status(404).json({error: "Usuário não encontrado"});
+            return res.status(404).json({error: "Usuário não encontrado"});
         }
-        res.status(200).json(usuario);
+        return res.status(200).json(usuario);
     }catch (error){
         console.error(error);
-            res.status(500).json({error: "Erro ao buscar usuário"});
+        return res.status(500).json({error: "Erro ao buscar usuário"});
     }
     
 }
