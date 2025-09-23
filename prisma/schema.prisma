@@ -55,7 +55,7 @@ model TaxonomiaFilho {
 
 model ItemExpositivo {
   id Int @id @default(autoincrement())
-  tiutuloDaObra String
+  tituloDaObra String
   descricao String?
   autor Autor? @relation(fields: [autorId], references: [id])
   autorId Int?

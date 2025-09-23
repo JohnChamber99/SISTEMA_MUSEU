@@ -5,7 +5,7 @@ async function listarItens() {
     return await prisma.itemExpositivo.findMany();
 }
 
-async function criarItem() {
+async function criarItem(dados) {
     return await prisma.itemExpositivo.create({ data: dados });
 }
 
