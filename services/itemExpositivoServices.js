@@ -15,8 +15,16 @@ async function mostrarItemPorId(id) {
     })
 }
 
+async function updateItemById(id, dados) {
+    return await prisma.itemExpositivo.update({
+        where: {id},
+        data: dados
+    })
+}
+
 export default {
     listarItens,
     criarItem,
+    updateItemById,
     mostrarItemPorId
 }

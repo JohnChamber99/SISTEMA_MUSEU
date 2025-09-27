@@ -36,8 +36,23 @@ async function getItemById(req, res){
     
 }
 
+async function updateItemById(req, res){
+    const {id} = req.params;
+    const {tituloDaObra, descricao, autorId, taxonomiaPaiId, taxonomiaFilhoId, periodo, altura, largura, comprimento, imagem_expositiva, documentoId, status, estadoConservacao, emManutencao, colecao} = req.body;
+    try{
+        const item = await itemExpositivoServices.updateItemById(parseInt(id), {tituloDaObra, descricao, autorId, taxonomiaPaiId, taxonomiaFilhoId, periodo, altura, largura, comprimento, imagem_expositiva, documentoId, status, estadoConservacao, emManutencao, colecao});
+        if(!item){
+            res.status(404).json({message: "Item não encontrado"})
+        }
+        res.status(200).json({message: `Item com Id ${id} atualizado com sucesso`});
+    }catch(error){
+        res.status(400).json({error: "Erro ao atualizar item"})    
+    }
+}
+
 export default {
     getAllItems,
     createNewItem,
-    getItemById
+    getItemById,
+    updateItemById
 }
