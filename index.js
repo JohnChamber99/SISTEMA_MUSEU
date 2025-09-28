@@ -3,6 +3,7 @@ import pool from './db.js';
 import userRoutes from './routes/userRoutes.js';
 import itemExpositivoRoutes from './routes/itemExpositivoRoutes.js'
 import documentoRoutes from './routes/documentoRoutes.js'
+import autorRoutes from './routes/autorRoutes.js'
 
 const app = express();
 const PORT = 3000;
@@ -15,6 +16,8 @@ app.use('/users', userRoutes);
 app.use('/items', itemExpositivoRoutes);
 //Chamando a rota Documento
 app.use('/document', documentoRoutes);
+//Chamando rota autor
+app.use('/author', autorRoutes);
 
 // database connection test
 pool.connect()
