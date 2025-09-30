@@ -12,7 +12,7 @@ async function getAllItems(req, res){
 async function createNewItem(req, res){
     const {tituloDaObra, descricao, autorId, taxonomiaPaiId, taxonomiaFilhoId, periodo, altura, largura, comprimento, imagem_expositiva, documentoId, status, estadoConservacao, emManutencao, colecao} = req.body;
     try{
-        const novoItem = await itemExpositivoServices.criarItem({tituloDaObra, descricao, autorId, taxonomiaPaiId, taxonomiaFilhoId, periodo, altura, largura, comprimento, imagem_expositiva, documentoId, status, estadoConservacao, emManutencao, colecao});
+        const novoItem = await itemExpositivoServices.criarItem({tituloDaObra, descricao, autorId, taxonomiaPaiId, taxonomiaFilhoId, periodo, altura, largura, comprimento, imagem_expositiva, documentoId, status, estadoConservacao, emManutencao, colecao: parseInt(colecao)});
         res.status(201).json({message: `Item com id ${novoItem.id} e título ${novoItem.tituloDaObra} criado com sucesso!`});
     }
     catch (error) {
